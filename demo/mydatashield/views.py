@@ -74,17 +74,21 @@ target_data = {
                 'account_num' : pseudonymy.p_num,
                 'pp_id' : pseudonymy.p_data,
                 'trans_id' : pseudonymy.p_num,
-                'bon_num' : pseudonymy.p_num,
+                'bond_num' : pseudonymy.p_num,
                 'trans_memo' : pseudonymy.p_name,
-                'repay_account' : pseudonymy.p_num,
+                'repay_account_num' : pseudonymy.p_num,
                 'card_num' : pseudonymy.p_num,
                 'account_name' : pseudonymy.p_name,
                 'account_id' : pseudonymy.p_name,
                 'charge_account_num' : pseudonymy.p_num,
                 'address' : pseudonymy.address,
-                'car_num' : pseudonymy.p_car_name,
+                'car_number' : pseudonymy.p_car_name,
                 'holder_name' : pseudonymy.p_name,
-                'name' : pseudonymy.p_name
+                'name' : pseudonymy.p_name,
+                'pay_id' : pseudonymy.p_num,
+                'trans_id' : pseudonymy.p_num,
+                'insured_name' : pseudonymy.p_name,
+                'telecom_num' : pseudonymy.p_num
               }
 
 
