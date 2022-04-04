@@ -130,15 +130,15 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS 관련 추가 
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = [
-    'http://127.0.0.1:8080',
-    'http://localhost:8080',
-    'http://google.com',
-    'http://hostname.example.com',
-    'https://127.0.0.1:8080',
-    'https://localhost:8080',
-    'https://google.com',
-    'https://hostname.example.com']
+CORS_ORIGIN_ALLOW_ALL = True
+#CORS_ORIGIN_WHITELIST = [
+    #'http://127.0.0.1:8080',
+    #'http://localhost:8080',
+    #'http://google.com',
+    #'http://hostname.example.com',
+    #'https://127.0.0.1:8080',
+    #'https://localhost:8080',
+    #'https://google.com',
+    #'https://hostname.example.com']
 CORS_ALLOW_CREDENTIALS = True
 
