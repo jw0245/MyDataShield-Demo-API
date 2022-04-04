@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyDataShield Demo</title>
+</head>
+
+<body>
+
+<form id="mydata" method="post">
+    <div>
+        <div>
+            <label for="account_name">계좌명:&nbsp;</label> 
+            <input type="text" name="account_name">
+        </div>
+        <div>
+            <label for="account_num">계좌 번호:</label>
+            <input type="text" name="account_num">
+        </div>
+        <div>
+            <label for="trans_memo">거래 기록:&nbsp;</label>
+            <input type="text" name="trans_memo">
+        </div>
+        <div>
+            <label for="card_num">카드 번호:&nbsp;</label>
+            <input type="text" name="card_num">
+        </div>
+        <div> 
+            <label for="address" >주소:&nbsp;</label>
+            <input type="text" name="address"><span>(입력 예: 서울시 강남구 개포동)<span>
+        </div>
+        <div> 
+            <label for="telecom_num" >핸드폰 번호:&nbsp;</label>
+            <input type="text" name="telecom_num">
+        </div>
+        
+        <input type="button" value="가명 처리" onclick="change();">
+    </div>
+</form>
+<br>
+<div>
+    <table border="1">
+        <tr>
+            <td>계좌명</td>
+            <td id="account_name">&nbsp;</td>
+        </tr>
+        <tr>
+            <td>계좌 번호</td>
+            <td id="account_num">&nbsp;</td>
+        </tr>
+        <tr>
+            <td>거래 기록</td>
+            <td id="trans_memo">&nbsp;</td>
+        </tr>
+        <tr>
+            <td>카드 번호</td>
+            <td id="card_num">&nbsp;</td>
+        </tr>
+        <tr>
+            <td>주소</td>
+            <td id="address">&nbsp;</td>
+
+        </tr>
+        <tr>
+            <td>핸드폰 번호</td>
+            <td id="telecom_num">&nbsp;</td>
+            
+        </tr>
+    </table>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    function change(){
+        var formData = $("#mydata").serialize();
+        console.log(formData)
+        
+    $.ajax({
+        cache:false,
+        url : "http://localhost:8080/mydatashield/",
+        type:'post',
+        dataType: "json",
+        data : formData,
+        success: function(data){
+
+            console.log("성공")
+            console.log(data)
+
+            console.log(data.length)
+            var td = $("<table/>");
+            
+            var $account_name = data.account_name;
+            var $account_num = data.account_num;
+            var $trans_memo = data.trans_memo;
+            var $card_num = data.card_num;
+            var $address = data.address;
+            var $telecom_num = data.telecom_num;
+
+            $("#account_name").text($account_name),
+            $("#account_num").text($account_num),
+            $("#trans_memo").text($trans_memo),
+            $("#card_num").text($card_num),
+            $("#address").text($address),
+            $("#telecom_num").text($telecom_num)
+            
+            //alert(JSON.stringify(data));    
+        },
+        error : function(xhr, status) {
+            console.log("실패")
+            alert(xhr + " : " + status);
+        }
+    });
+    }
+</script>
+    
+</body>
+</html>

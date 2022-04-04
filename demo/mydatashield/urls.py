@@ -14,9 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path, include
-from .views import MydatashieldAPI
-
+from . import views
 urlpatterns = [ 
-    path("mydatashield/", MydatashieldAPI)
+    path("",views.change,name='change'),
+    path("mydatashield/", views.MydatashieldAPI),
 ]
 

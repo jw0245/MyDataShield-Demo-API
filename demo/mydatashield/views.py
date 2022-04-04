@@ -1,5 +1,7 @@
+from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from django.shortcuts import render
 import re
     
 class pseudonymy :
@@ -91,7 +93,6 @@ target_data = {
                 'telecom_num' : pseudonymy.p_num
               }
 
-
 def anonymization(processed, target_data, temp_dict):
         
     for key_r, value_r in processed.items():
@@ -102,7 +103,10 @@ def anonymization(processed, target_data, temp_dict):
                 temp_dict[key_r] = value_p(value_r)
     return temp_dict
 
-@api_view(["GET"])
+def change(request):
+    return render(request,'change.html',{})
+
+@api_view(["POST"])
 def MydatashieldAPI(request):
 
     response_data = dict()
