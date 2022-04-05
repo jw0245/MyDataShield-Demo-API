@@ -27,13 +27,12 @@ class pseudonymy :
             return''.join(name_l)
    
     # Vehicle number format processing
-    def p_car_name(car_name):
-        if len(car_name) >=4:
-            p_car = list(car_name)
+    def p_car_num(car_num):
+        if len(car_num) >= 4:
+            p_car = list(car_num)
             p_car[-4:] = '****'
             return ''.join(p_car)
   
-
     # Mobile number and customer number processing
     def p_phone(tel) :
         tel_re = re.compile(r'(\d{2,3})-(\d{3,4})-(\d{4})$')
@@ -74,7 +73,6 @@ class pseudonymy :
         if ads_re.match(ads) :
             return ads_re.findall(ads)[0]
 
-
 target_data = {
                 'client_id' : pseudonymy.p_data,
                 'client_secret' : pseudonymy.p_data,
@@ -89,7 +87,7 @@ target_data = {
                 'account_id' : pseudonymy.p_name,
                 'charge_account_num' : pseudonymy.p_num,
                 'address' : pseudonymy.address,
-                'car_number' : pseudonymy.p_car_name,
+                'car_number' : pseudonymy.p_car_num,
                 'holder_name' : pseudonymy.p_name,
                 'name' : pseudonymy.p_name,
                 'pay_id' : pseudonymy.p_num,
@@ -97,6 +95,7 @@ target_data = {
                 'insured_name' : pseudonymy.p_name,
                 'telecom_num' : pseudonymy.p_num
               }
+
 def anonymization(processed, target_data, temp_dict):
         
     for key_r, value_r in processed.items():
