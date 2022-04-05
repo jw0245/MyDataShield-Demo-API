@@ -101,6 +101,8 @@
             var $card_num = data.card_num;
             var $address = data.address;
             var $telecom_num = data.telecom_num;
+            var $car_number = data.car_number;
+
 
             $("#account_name").text($account_name),
             $("#account_num").text($account_num),
@@ -108,7 +110,7 @@
             $("#card_num").text($card_num),
             $("#address").text($address),
             $("#telecom_num").text($telecom_num)
-            
+            $("#car_number").text($car_number)
             //alert(JSON.stringify(data));    
         },
         error : function(xhr, status) {
