@@ -1,84 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyDataShield Demo</title>
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="MyData Shield Demo">
+    <meta name="author" content="gw0245">
+    <title>MyData Shield Demo</title>
 
-<body>
+    <!-- Bootstrap core CSS -->
+<link href="./css/bootstrap.min.css" rel="stylesheet">
 
-<form id="mydata" method="post">
-    <div class="input">
-        <div>
-            <label for="account_name">계좌명:&nbsp;</label> 
-            <input type="text" name="account_name">
-        </div>
-        <div>
-            <label for="account_num">계좌 번호:</label>
-            <input type="text" name="account_num">
-        </div>
-        <div>
-            <label for="trans_memo">거래 기록:&nbsp;</label>
-            <input type="text" name="trans_memo">
-        </div>
-        <div>
-            <label for="card_num">카드 번호:&nbsp;</label>
-            <input type="text" name="card_num">
-        </div>
-        <div> 
-            <label for="address" >주소:&nbsp;</label>
-            <input type="text" name="address"><span>(입력 예: 서울시 강남구 개포동)<span>
-        </div>
-        <div> 
-            <label for="telecom_num" >핸드폰 번호:&nbsp;</label>
-            <input type="text" name="telecom_num">
-        </div>
-        <div> 
-            <label for="car_number" >차량 번호:&nbsp;</label>
-            <input type="text" name="car_number">
-        </div>
-        
-        <input type="button" value="가명 처리" onclick="change();">
-    </div>
-</form>
-<br>
-<div>
-    <table border="1">
-        <tr>
-            <td>계좌명</td>
-            <td id="account_name">&nbsp;</td>
-        </tr>
-        <tr>
-            <td>계좌 번호</td>
-            <td id="account_num">&nbsp;</td>
-        </tr>
-        <tr>
-            <td>거래 기록</td>
-            <td id="trans_memo">&nbsp;</td>
-        </tr>
-        <tr>
-            <td>카드 번호</td>
-            <td id="card_num">&nbsp;</td>
-        </tr>
-        <tr>
-            <td>주소</td>
-            <td id="address">&nbsp;</td>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      body {background-color: rgba(235, 233, 233, 0.726);}
 
-        </tr>
-        <tr>
-            <td>핸드폰 번호</td>
-            <td id="telecom_num">&nbsp;</td>
-        </tr>
-        <tr>
-            <td>차량 번호</td>
-            <td id="car_number">&nbsp;</td>
-        </tr>
-    </table>
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
 
-</div>
-
+    <h1 style="position: relative; text-align: center; padding-bottom: 2%;"><b>MyData Shield</b></h1>
+    <!-- Custom styles for this template -->
+    <link href="grid.css" rel="stylesheet">
+  </head>
+  <body class="py-4">
+    
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
     function change(){
@@ -124,6 +78,166 @@
     });
     }
 </script>
-    
-</body>
+
+<main>
+  <div class="container">
+  <form id="mydata" method="post">
+        <div class="row mb-3">
+          <div class="col-sm-4 themed-grid-col"><b>항목</b></div>
+          <div class="col-sm-4 themed-grid-col"><b>입력</b></div>
+          <div class="col-sm-4 themed-grid-col"><b>필드명</b></div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-4 themed-grid-col">            
+            <label for="account_name">계좌명</label> 
+          </div>
+          <div class="col-4 themed-grid-col">
+            <input type="text" name="account_name" style="width: 100%;">
+          </div>
+          <div class="col-4 themed-grid-col">account_name</div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-sm-4 themed-grid-col">
+            <label for="account_num">계좌 번호</label>
+          </div>
+          <div class="col-sm-4 themed-grid-col">
+            <input type="text" name="account_num" style="width: 100%;">
+          </div>
+          <div class="col-sm-4 themed-grid-col">account_num</div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4 themed-grid-col">
+            <label for="trans_memo">거래 메모</label>
+          </div>
+          <div class="col-md-4 themed-grid-col">            
+            <input type="text" name="trans_memo" style="width: 100%;">
+          </div>
+          <div class="col-md-4 themed-grid-col">trans_memo</div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4 themed-grid-col">
+            <label for="card_num">카드 번호</label>
+          </div>
+          <div class="col-md-4 themed-grid-col">            
+            <input type="text" name="card_num" style="width: 100%;">
+          </div>
+          <div class="col-md-4 themed-grid-col">card_num</div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4 themed-grid-col">
+            <label for="address">주소</label>
+          </div>
+          <div class="col-md-4 themed-grid-col">            
+            <input type="text" name="address" style="width: 100%;">
+          </div>
+          <div class="col-md-4 themed-grid-col">address</div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4 themed-grid-col">
+            <label for="telecom_num">휴대폰 번호</label>
+          </div>
+          <div class="col-md-4 themed-grid-col">            
+            <input type="text" name="telecom_num" style="width: 100%;">
+          </div>
+          <div class="col-md-4 themed-grid-col">telecom_num</div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4 themed-grid-col">
+            <label for="car_number">차량 번호</label>
+          </div>
+          <div class="col-md-4 themed-grid-col">            
+            <input type="text" name="car_number" style="width: 100%;">
+          </div>
+          <div class="col-md-4 themed-grid-col">car_number</div>
+        </div>
+        <input type="button" value="가명 처리" onclick="change();" style="position: relative;">
+  </form>
+  <br/>
+  <h2 style="position: relative; text-align: center; padding-bottom: 2%;"><b>가명 처리 데이터</b></h2>
+    <div class="row mb-3">
+      <div class="col-sm-4 themed-grid-col"><b>항목</b></div>
+      <div class="col-sm-4 themed-grid-col"><b>결과</b></div>
+      <div class="col-sm-4 themed-grid-col"><b>필드명</b></div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-4 themed-grid-col">            
+        <label for="account_name">계좌명</label> 
+      </div>
+      <div class="col-4 themed-grid-col">
+        <p id="account_name"></p>
+      </div>
+      <div class="col-4 themed-grid-col">account_name</div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-sm-4 themed-grid-col">
+        <label for="account_num">계좌 번호</label>
+      </div>
+      <div class="col-sm-4 themed-grid-col">
+        <p id="account_num"></p>
+      </div>
+      <div class="col-sm-4 themed-grid-col">account_num</div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-4 themed-grid-col">
+        <label for="trans_memo">거래 메모</label>
+      </div>
+      <div class="col-md-4 themed-grid-col">            
+       <p id="trans_memo"></p>
+      </div>
+      <div class="col-md-4 themed-grid-col">trans_memo</div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-4 themed-grid-col">
+        <label for="card_num">카드 번호</label>
+      </div>
+      <div class="col-md-4 themed-grid-col">            
+        <p id="card_num"></p>
+      </div>
+      <div class="col-md-4 themed-grid-col">card_num</div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-4 themed-grid-col">
+        <label for="address">주소</label>
+      </div>
+      <div class="col-md-4 themed-grid-col">            
+        <p id="address"></p>
+      </div>
+      <div class="col-md-4 themed-grid-col">address</div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-4 themed-grid-col">
+        <label for="telecom_num">휴대폰 번호</label>
+      </div>
+      <div class="col-md-4 themed-grid-col">            
+        <p id="telecom_num"></p>
+      </div>
+      <div class="col-md-4 themed-grid-col">telecom_num</div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-4 themed-grid-col">
+        <label for="car_number">차량 번호</label>
+      </div>
+      <div class="col-md-4 themed-grid-col">            
+        <p id="car_number"></p>
+      </div>
+      <div class="col-md-4 themed-grid-col">car_number</div>
+    </div>
+
+</div>
+</main>
+  </body>
 </html>
