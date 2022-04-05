@@ -21,15 +21,18 @@ class pseudonymy :
         
     # name pseudonymization function (All except last name are treated as *)
     def p_name(name) :
-        name_l = list(name)
-        name_l[1:] = '*' * (len(name_l) -1) 
-        return''.join(name_l)
-
+        if len(name) >= 2:
+            name_l = list(name)
+            name_l[1:] = '*' * (len(name_l) -1) 
+            return''.join(name_l)
+   
     # Vehicle number format processing
     def p_car_name(car_name):
-        p_car = list(car_name)
-        p_car[-4:] = '****'
-        return ''.join(p_car)
+        if len(car_name) >=4:
+            p_car = list(car_name)
+            p_car[-4:] = '****'
+            return ''.join(p_car)
+  
 
     # Mobile number and customer number processing
     def p_phone(tel) :
@@ -68,7 +71,9 @@ class pseudonymy :
     # adrress type data      
     def address(ads) :
         ads_re = re.compile(r'([ㄱ-ㅣ가-힣]+[\s]+[ㄱ-ㅣ가-힣]+'')')
-        return ads_re.findall(ads)[0]
+        if ads_re.match(ads) :
+            return ads_re.findall(ads)[0]
+
 
 target_data = {
                 'client_id' : pseudonymy.p_data,
