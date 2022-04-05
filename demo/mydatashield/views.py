@@ -25,6 +25,8 @@ class pseudonymy :
             name_l = list(name)
             name_l[1:] = '*' * (len(name_l) -1) 
             return''.join(name_l)
+        else :
+            return ''
    
     # Vehicle number format processing
     def p_car_num(car_num):
@@ -32,7 +34,8 @@ class pseudonymy :
             p_car = list(car_num)
             p_car[-4:] = '****'
             return ''.join(p_car)
-  
+        else :
+            return ''
     # Mobile number and customer number processing
     def p_phone(tel) :
         tel_re = re.compile(r'(\d{2,3})-(\d{3,4})-(\d{4})$')
@@ -72,6 +75,8 @@ class pseudonymy :
         ads_re = re.compile(r'([ㄱ-ㅣ가-힣]+[\s]+[ㄱ-ㅣ가-힣]+'')')
         if ads_re.match(ads) :
             return ads_re.findall(ads)[0]
+        else :
+            return ''
 
 target_data = {
                 'client_id' : pseudonymy.p_data,
