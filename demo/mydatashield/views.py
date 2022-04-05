@@ -33,10 +33,10 @@ class pseudonymy :
 
     # Mobile number and customer number processing
     def p_phone(tel) :
-        tel_re = re.compile(r'(\d{3})(\d{3,4})(\d{4})$')
+        tel_re = re.compile(r'(\d{2,3})-(\d{3,4})-(\d{4})$')
         # Mobile number
         if tel_re.match(tel):
-            return tel_re.sub('\g<1>\g<2>****',tel)
+            return tel_re.sub('\g<1>-\g<2>-****',tel)
 
         # Customer information other than mobile phone number
         else :    
@@ -46,19 +46,19 @@ class pseudonymy :
 
     # Pseudonymization of account numbers, card numbers and other payment methods
     def p_num(num):
-        card_re = re.compile(r'(\d{16,19})$')
-        account_re = re.compile(r'(\d{12,14})$')
+        payment_re = re.compile(r'(\d{2,6})-(\d{2,6})-(\d{2,6})-(\d{2,4})$')
+        account_re = re.compile(r'(\d{3,5})-(\d{2,6})-(\d{2,6})$')
 
-        # card_num
-        if card_re.match(num):
-            a = list(num)
-            a[5:-4] = '*' * (len(num)-9)
-            return ''.join(a)
+        # card_num or account_num
+        if payment_re.match(num):
+            ac_s = num.split('-')
+            result = ac_s[0] + '-' + len(ac_s[1])*'*' + '-' + ac_s[2] + '-' + len(ac_s[3])*'*'   
+            return payment_re.sub('\g<1>-****-\g<3>-****',num)
         # account_num
         elif account_re.match(num):
-            a_list = list(num)
-            a_list[4:-3] = '*' * (len(num)-7)
-            return ''.join(a_list)
+            ac_s = num.split('-')
+            result = ac_s[0] + '-' + len(ac_s[1])*'*' + '-' + len(ac_s[2])*'*'  
+            return result
         # other payment methods
         else :
             a = list(num)
@@ -92,7 +92,6 @@ target_data = {
                 'insured_name' : pseudonymy.p_name,
                 'telecom_num' : pseudonymy.p_num
               }
-
 def anonymization(processed, target_data, temp_dict):
         
     for key_r, value_r in processed.items():
