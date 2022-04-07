@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="MyData Shield Demo">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="gw0245">
+    <title>MyData Shield Demo</title>
+    <style>
+        body {background-color: #ececec;}
+        .div_h {width:33%; height: 9%; border-bottom:3px solid #333; float:left;}
+        .div_p { width:33%; height: 60px;; border-bottom:2px solid #ccc; float:left; text-align: center; }
+        .div_i { width:33%; height: 60px;; border-bottom:2px solid #ccc; float:left; text-align: center; line-height: 60px; }
+        .font_s {position: relative; width:  100%; text-align: center; font-size: 18px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
+        input {width: 100%; height: 25px; z-index: 0; background-color:  rgb(223, 223, 223); }
+    </style>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+
+        function change(){
+
+            var formData = $("#mydata").serialize();
+            console.log(formData)
+
+        $.ajax({
+            cache:false,
+            url : "http://ec2-52-79-81-239.ap-northeast-2.compute.amazonaws.com:8080/mydatashield/",
+            type:'post',
+            dataType: "json",
+            data : formData,
+            success: function(data){
+                
+                console.log("성공")
+                console.log(data)
+    
+                console.log(data.length)
+                var td = $("<table/>");
+                
+                var $account_name = data.account_name;
+                var $account_num = data.account_num;
+                var $trans_memo = data.trans_memo;
+                var $card_num = data.card_num;
+                var $address = data.address;
+                var $telecom_num = data.telecom_num;
+                var $car_number = data.car_number;
+    
+    
+                $("#account_name").text($account_name),
+                $("#account_num").text($account_num),
+                $("#trans_memo").text($trans_memo),
+                $("#card_num").text($card_num),
+                $("#address").text($address),
+                $("#telecom_num").text($telecom_num)
+                $("#car_number").text($car_number)
+                //alert(JSON.stringify(data));    
+            },
+            error : function(xhr, status) {
+                console.log("실패")
+                alert(xhr + " : " + status);
+            }
+        });
+        }
+    </script>
+
+    <h1 style="position: relative; text-align: center; padding-top : 1%; padding-bottom: 2%;"><b>MyData Shield</b></h1>
+    
+<form id="mydata" method="post">
+    <div style="background-color: #ededee; border: solid 1px #ccc; width : 93%; height : 539px; margin: 0 0 1.5% 3.5% ; padding: 1% ; object-fit: contain">
+        
+        <div>
+        <div class="div_h">
+           <p class="font_s"><b>항목</b></p>
+            </div>
+            <div class="div_h">
+                <p class="font_s"><b>입력</b></p>
+
+            </div>
+            <div class="div_h">
+                <p class="font_s"><b>항목명</b></p>
+            </div>
+        </div>
+            
+        <div>
+            <div class="div_p">
+               <p class="font_s">계좌명</p>
+                </div>
+                <div class="div_i">
+                    <input type="text" name="account_name">
+                </div>
+                <div class="div_p"">
+                    <p class="font_s">account_name</p>
+                </div>
+        </div>
+
+        <div>
+            <div class="div_p">
+                <p class="font_s">계좌 번호</p>
+            </div>
+            <div class="div_i">
+                <input type="text" name="account_num">
+            </div>
+            <div class="div_p">
+                <p class="font_s">account_num</p>
+            </div>
+        </div>
+
+        <div>
+                <div class="div_p">
+                    <p class="font_s">거래 메모</p>
+                </div>
+                <div class="div_i">
+                    <input type="text" name="trans_memo">
+                </div>
+                <div class="div_p">
+                    <p class="font_s">trans_memo</p>
+                </div>
+        </div>
+
+        <div>
+            <div class="div_p">
+                <p class="font_s">카드 번호</p>
+            </div>
+            <div class="div_i">
+                <input type="text" name="card_num">
+            </div>
+            <div class="div_p">
+                <p class="font_s">card_num</p>
+            </div>
+    </div>
+
+    <div>
+        <div class="div_p">
+            <p class="font_s">주소</p>
+        </div>
+        <div class="div_i">
+            <input type="text" name="address">
+        </div>
+        <div class="div_p">
+            <p class="font_s">address</p>
+        </div>
+</div>
+
+<div>
+    <div class="div_p">
+        <p class="font_s">휴대폰 번호</p>
+    </div>
+    <div class="div_i">
+        <input type="text" name="telecom_num">
+    </div>
+    <div class="div_p">
+        <p class="font_s">telecom_num</p>
+    </div>
+</div>
+
+<div>
+    <div class="div_p">
+        <p class="font_s">차량 번호</p>
+    </div>
+    <div class="div_i">
+        <input type="text" name="car_number">
+    </div>
+    <div class="div_p">
+        <p class="font_s">car_number</p>
+    </div>
+</div>
+</div>
+</form> 
+
+<button type="button" style="min-width: 102px; position: relative; left: 3.5%; width : 15%; height: 41px; background-color: red; border: 0;" onclick="change();">
+<p style=" margin : 0 ;color: #fff; font-size: 20px;  font-family: NanumSquareB;">
+    가명 처리
+</p>
+    </button>
+
+
+<h1 style="position: relative; text-align: center; padding-top : 1%; padding-bottom: 2%;"><b>가명처리 데이터</b></h1>
+<div style="background-color: #ededee; border: solid 1px #ccc; width : 93%; height : 539px; margin: 0 0 1.5% 3.5% ; padding: 1% ; object-fit: contain">
+        
+    <div>
+    <div class="div_h">
+       <p class="font_s"><b>항목</b></p>
+        </div>
+        <div class="div_h">
+            <p class="font_s"><b>결과</b></p>
+
+        </div>
+        <div class="div_h">
+            <p class="font_s"><b>항목명</b></p>
+        </div>
+    </div>
+        
+    <div>
+        <div class="div_p">
+           <p class="font_s">계좌명</p>
+            </div>
+            <div class="div_p">
+                <strong><p class="font_s" id="account_name"></p></strong>
+            </div>
+            <div class="div_p"">
+                <p class="font_s">account_name</p>
+            </div>
+    </div>
+
+    <div>
+        <div class="div_p">
+            <p class="font_s">계좌 번호</p>
+        </div>
+        <div class="div_p">
+            <strong><p class="font_s" id="account_num"></p></strong>
+        </div>
+        <div class="div_p">
+            <p class="font_s">account_num</p>
+        </div>
+    </div>
+
+    <div>
+            <div class="div_p">
+                <p class="font_s">거래 메모</p>
+            </div>
+            <div class="div_p">
+                <strong><p class="font_s" id="trans_memo"></p></strong>
+            </div>
+            <div class="div_p">
+                <p class="font_s">trans_memo</p>
+            </div>
+    </div>
+
+    <div>
+        <div class="div_p">
+            <p class="font_s">카드 번호</p>
+        </div>
+        <div class="div_p">
+            <strong><p class="font_s" id="card_num"></p></strong>
+        </div>
+        <div class="div_p">
+            <p class="font_s">card_num</p>
+        </div>
+</div>
+
+<div>
+    <div class="div_p">
+        <p class="font_s">주소</p>
+    </div>
+    <div class="div_p">
+        <strong><p class="font_s" id="address"></p></strong>
+    </div>
+    <div class="div_p">
+        <p class="font_s">address</p>
+    </div>
+</div>
+
+<div>
+<div class="div_p">
+    <p class="font_s">휴대폰 번호</p>
+</div>
+<div class="div_p">
+    <strong><p class="font_s" id="telecom_num"></p></strong>
+</div>
+<div class="div_p">
+    <p class="font_s">telecom_num</p>
+</div>
+</div>
+
+<div>
+<div class="div_p">
+    <p class="font_s">차량 번호</p>
+</div>
+<div class="div_p">
+    <strong><p class="font_s" id="car_number"></p></strong>
+</div>
+<div class="div_p">
+    <p class="font_s">car_number</p>
+</div>
+</div>
+</div>
+
+    
+</body>
+</html>

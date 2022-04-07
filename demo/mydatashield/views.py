@@ -111,8 +111,12 @@ def anonymization(processed, target_data, temp_dict):
                 temp_dict[key_r] = value_p(value_r)
     return temp_dict
 
-def change(request):
-    return render(request,'change.html',{})
+def Demo(request):
+    return render(request,'Demo.html',{})
+
+def old(request):
+    return render(request,'old.html',{})
+
 
 @api_view(["POST"])
 def MydatashieldAPI(request):
