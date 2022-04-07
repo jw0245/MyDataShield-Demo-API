@@ -17,7 +17,7 @@ from django.urls import path, include
 from . import views
 urlpatterns = [ 
     path("",views.Demo,name='Demo'),
-    path("old/",views.old,name='old')
+    path("old/",views.old,name='old'),
     path("mydatashield/", views.MydatashieldAPI),
 ]
 
