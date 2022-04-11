@@ -14,3 +14,7 @@ MyData Shield API는 마이데이터 서비스에 포함되어 있는 정보 주
 ### 구성
 * 처음 화면에서 API 기능 테스트가능
 * /mydata 의 주소를 통해 API 활용
+
+### 화면
+![image](https://user-images.githubusercontent.com/61214962/162648791-abe42161-09eb-4942-8cc6-51749a35016f.png)
+![image](https://user-images.githubusercontent.com/61214962/162648808-5e9ce53d-b737-41e8-ba3e-509239fdc71e.png)
