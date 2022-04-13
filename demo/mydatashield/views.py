@@ -140,10 +140,10 @@ def anonymization(processed, target_data, temp_dict):
                 temp_dict[key_r] = value_p(value_r)
     return temp_dict
 
-def anonymization2(processed, target_data, temp_dict):
+def anonymization1(processed, target_data, temp_dict):
     
     # request.data
-    if ('account_name' in processed.keys() and  'account_num' in processed.keys()):
+    if ('account_name' in processed.keys() and 'account_num' in processed.keys()):
         temp_dict['id'] = h_encryption.comb_data(processed['account_name'], processed['account_num'])
         del processed['account_name']
         del processed['account_num']
@@ -180,10 +180,8 @@ def MydatashieldMasking(request):
     response_data = dict()
     anonymization(request.data, target_data, response_data)
     return Response(response_data)
-
-@api_view(["POST"])
 def MydatashieldEncryption(request):
 
     response_data = dict()
-    anonymization2(request.data, target_data, response_data)
+    anonymization1(request.data, target_data, response_data)
     return Response(response_data)
