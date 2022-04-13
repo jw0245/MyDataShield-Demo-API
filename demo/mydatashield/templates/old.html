@@ -1,244 +1,301 @@
-<!doctype html>
-{% load static %}
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="MyData Shield Demo">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="gw0245">
     <title>MyData Shield Demo</title>
 
-    <!-- Bootstrap core CSS -->
-<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-<link href="{% static 'css/grid.css' %}" rel="stylesheet">
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-      body {background-color: rgba(235, 233, 233, 0.726);}
+         body {background-color: #ececec;}
+        .subject{ font-size: 2.5rem; text-align: center; width : 100%; position: relative; padding-top : 1%; padding-bottom: 1%; }
+        .container{float : left; background-color: #f5f5f5; border: solid 1px #ccc; width : 43%; height : 550px; margin: 0 0 1.5% 3.5% ; padding: 1% ; object-fit: contain}
+        .div_h {width:33%; height: 9%; border-bottom:3px solid #333; float:left;}
+        .div_p { width:33%; height: 60px;; border-bottom:2px solid #ccc; float:left; text-align: center;  }
+        .div_p_b { width:33%; height: 60px; text-align: center;  }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-
-    <h1 style="position: relative; text-align: center; padding-bottom: 2%;"><b>MyData Shield</b></h1>
-    <!-- Custom styles for this template -->
-    
-  </head>
-  <body class="py-4">
-    
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript">
-    function change(){
-        var formData = $("#mydata").serialize();
-        console.log(formData)
+        .div_i { width:33%; height: 60px;; border-bottom:2px solid #ccc; float:left; text-align: center; line-height: 60px; }
+        .font_i {position: relative; width:  100%; text-align: center; font-size: 18px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
+        .font_s {position: relative; position: relative; left : 1%; top: 30%; width:  100%;  margin : 0;  text-align: center; color : #333; font-size: 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
+         input {color : #333; width: 100%; height: 25px; z-index: 0; background-color:  rgb(233, 233, 233); }
         
-    $.ajax({
-        cache:false,
-        url : "http://ec2-52-79-81-239.ap-northeast-2.compute.amazonaws.com:8080/mydatashield/",
-        type:'post',
-        dataType: "json",
-        data : formData,
-        success: function(data){
+         @media (max-width: 805px){
+            .subject{ font-size: 2rem; text-align: center; width : 100%; position: relative; padding-top : 1%; padding-bottom: 1%; }
+            .container{background-color: #f5f5f5; border: solid 1px #ccc; width : 93%; height : 550px; margin: 0 0 1.5% 3.5% ; padding: 1% ; object-fit: contain}
+            .div_h {width:33%; height: 9%; border-bottom:3px solid #333; float:left;}
+            .div_p { width:33%; height: 60px;; border-bottom:2px solid #ccc; float:left; text-align: center;  }
+            .div_p_b { width:33%; height: 60px; text-align: center;  }
+            .div_i { width:33%; height: 60px;; border-bottom:2px solid #ccc; float:left; text-align: center; line-height: 60px; }
+            .font_i {position: relative; width:  100%; text-align: center; font-size: 18px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
+            .font_s {position: relative; position: relative; left : 1%; top: 30%; width:  100%;  margin : 0;  text-align: center; color : #333; font-size: 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
+            input {color : #333; width: 100%; height: 25px; z-index: 0; background-color:  rgb(233, 233, 233); }body {background-color: #ececec;}
 
-            console.log("성공")
-            console.log(data)
-
-            console.log(data.length)
-            var td = $("<table/>");
-            
-            var $account_name = data.account_name;
-            var $account_num = data.account_num;
-            var $trans_memo = data.trans_memo;
-            var $card_num = data.card_num;
-            var $address = data.address;
-            var $telecom_num = data.telecom_num;
-            var $car_number = data.car_number;
-
-
-            $("#account_name").text($account_name),
-            $("#account_num").text($account_num),
-            $("#trans_memo").text($trans_memo),
-            $("#card_num").text($card_num),
-            $("#address").text($address),
-            $("#telecom_num").text($telecom_num)
-            $("#car_number").text($car_number)
-            //alert(JSON.stringify(data));    
-        },
-        error : function(xhr, status) {
-            console.log("실패")
-            alert(xhr + " : " + status);
         }
-    });
-    }
-</script>
 
-<main>
-  <div class="container">
-  <form id="mydata" method="post">
-        <div class="row mb-3">
-          <div class="col-sm-4 themed-grid-col"><b>항목</b></div>
-          <div class="col-sm-4 themed-grid-col"><b>입력</b></div>
-          <div class="col-sm-4 themed-grid-col"><b>필드명</b></div>
+    </style>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+
+        function change(){
+
+            var formData = $("#mydata").serialize();
+            console.log(formData)
+
+        $.ajax({
+            cache:false,
+            url : "http://ec2-52-79-81-239.ap-northeast-2.compute.amazonaws.com:8080/mydatashield/",
+            type:'post',
+            dataType: "json",
+            data : formData,
+            success: function(data){
+                
+                console.log("성공")
+                console.log(data)
+    
+                console.log(data.length)
+                var td = $("<table/>");
+                
+                var $account_name = data.account_name;
+                var $account_num = data.account_num;
+                var $trans_memo = data.trans_memo;
+                var $card_num = data.card_num;
+                var $address = data.address;
+                var $telecom_num = data.telecom_num;
+                var $car_number = data.car_number;
+    
+    
+                $("#account_name").text($account_name),
+                $("#account_num").text($account_num),
+                $("#trans_memo").text($trans_memo),
+                $("#card_num").text($card_num),
+                $("#address").text($address),
+                $("#telecom_num").text($telecom_num)
+                $("#car_number").text($car_number)
+                //alert(JSON.stringify(data));    
+            },
+            error : function(xhr, status) {
+                console.log("실패")
+                alert(xhr + " : " + status);
+            }
+        });
+        }
+    </script>
+
+    <h1 class ="subject"><b>MyData Shield</b></h1>
+
+    <div class="container">
+        <form id="mydata" method="post">
+        <div>
+        <div class="div_h">
+           <p class="font_i"><b>항목</b></p>
+            </div>
+            <div class="div_h">
+                <p class="font_i"><b>입력</b></p>
+            </div>
+            <div class="div_h">
+                <p class="font_i"><b>항목명</b></p>
+            </div>
+        </div>
+            
+        <div>
+            <div class="div_p">
+               <p class="font_s">계좌명</p>
+                </div>
+                <div class="div_i">
+                    <input type="text" name="account_name" value="홍길동">
+                </div>
+                <div class="div_p"">
+                    <p class="font_s">account_name</p>
+                </div>
         </div>
 
-        <div class="row mb-3">
-          <div class="col-4 themed-grid-col">            
-            <label for="account_name">계좌명</label> 
-          </div>
-          <div class="col-4 themed-grid-col">
-            <input type="text" name="account_name" style="width: 100%;">
-          </div>
-          <div class="col-4 themed-grid-col">account_name</div>
+        <div>
+            <div class="div_p">
+                <p class="font_s">계좌 번호</p>
+            </div>
+            <div class="div_i">
+                <input type="text" name="account_num" value="123-98-908172">
+            </div>
+            <div class="div_p">
+                <p class="font_s">account_num</p>
+            </div>
         </div>
 
-        <div class="row mb-3">
-          <div class="col-sm-4 themed-grid-col">
-            <label for="account_num">계좌 번호</label>
-          </div>
-          <div class="col-sm-4 themed-grid-col">
-            <input type="text" name="account_num" style="width: 100%;">
-          </div>
-          <div class="col-sm-4 themed-grid-col">account_num</div>
+        <div>
+                <div class="div_p">
+                    <p class="font_s">거래 메모</p>
+                </div>
+                <div class="div_i">
+                    <input type="text" name="trans_memo" value="우체국 예금">
+                </div>
+                <div class="div_p">
+                    <p class="font_s">trans_memo</p>
+                </div>
         </div>
 
-        <div class="row mb-3">
-          <div class="col-md-4 themed-grid-col">
-            <label for="trans_memo">거래 메모</label>
-          </div>
-          <div class="col-md-4 themed-grid-col">            
-            <input type="text" name="trans_memo" style="width: 100%;">
-          </div>
-          <div class="col-md-4 themed-grid-col">trans_memo</div>
+        <div>
+            <div class="div_p">
+                <p class="font_s">카드 번호</p>
+            </div>
+            <div class="div_i">
+                <input type="text" name="card_num" value="4321-1234-4321-1234">
+            </div>
+            <div class="div_p">
+                <p class="font_s">card_num</p>
+            </div>
+    </div>
+
+    <div>
+        <div class="div_p">
+            <p class="font_s">주소</p>
         </div>
-
-        <div class="row mb-3">
-          <div class="col-md-4 themed-grid-col">
-            <label for="card_num">카드 번호</label>
-          </div>
-          <div class="col-md-4 themed-grid-col">            
-            <input type="text" name="card_num" style="width: 100%;">
-          </div>
-          <div class="col-md-4 themed-grid-col">card_num</div>
+        <div class="div_i">
+            <input type="text" name="address" value="서울 영등포구 국제금융로2길 36, 유화증권빌딩 8층, 9층">
         </div>
-
-        <div class="row mb-3">
-          <div class="col-md-4 themed-grid-col">
-            <label for="address">주소</label>
-          </div>
-          <div class="col-md-4 themed-grid-col">            
-            <input type="text" name="address" style="width: 100%;">
-          </div>
-          <div class="col-md-4 themed-grid-col">address</div>
+        <div class="div_p">
+            <p class="font_s">address</p>
         </div>
-
-        <div class="row mb-3">
-          <div class="col-md-4 themed-grid-col">
-            <label for="telecom_num">휴대폰 번호</label>
-          </div>
-          <div class="col-md-4 themed-grid-col">            
-            <input type="text" name="telecom_num" style="width: 100%;">
-          </div>
-          <div class="col-md-4 themed-grid-col">telecom_num</div>
-        </div>
-
-        <div class="row mb-3">
-          <div class="col-md-4 themed-grid-col">
-            <label for="car_number">차량 번호</label>
-          </div>
-          <div class="col-md-4 themed-grid-col">            
-            <input type="text" name="car_number" style="width: 100%;">
-          </div>
-          <div class="col-md-4 themed-grid-col">car_number</div>
-        </div>
-        <input type="button" value="가명 처리" onclick="change();" style="position: relative;">
-  </form>
-  <br/>
-  <h2 style="position: relative; text-align: center; padding-bottom: 2%;"><b>가명 처리 데이터</b></h2>
-    <div class="row mb-3">
-      <div class="col-sm-4 themed-grid-col"><b>항목</b></div>
-      <div class="col-sm-4 themed-grid-col"><b>결과</b></div>
-      <div class="col-sm-4 themed-grid-col"><b>필드명</b></div>
-    </div>
-
-    <div class="row mb-3">
-      <div class="col-4 themed-grid-col">            
-        <label for="account_name">계좌명</label> 
-      </div>
-      <div class="col-4 themed-grid-col">
-        <p id="account_name"></p>
-      </div>
-      <div class="col-4 themed-grid-col">account_name</div>
-    </div>
-
-    <div class="row mb-3">
-      <div class="col-sm-4 themed-grid-col">
-        <label for="account_num">계좌 번호</label>
-      </div>
-      <div class="col-sm-4 themed-grid-col">
-        <p id="account_num"></p>
-      </div>
-      <div class="col-sm-4 themed-grid-col">account_num</div>
-    </div>
-
-    <div class="row mb-3">
-      <div class="col-md-4 themed-grid-col">
-        <label for="trans_memo">거래 메모</label>
-      </div>
-      <div class="col-md-4 themed-grid-col">            
-       <p id="trans_memo"></p>
-      </div>
-      <div class="col-md-4 themed-grid-col">trans_memo</div>
-    </div>
-
-    <div class="row mb-3">
-      <div class="col-md-4 themed-grid-col">
-        <label for="card_num">카드 번호</label>
-      </div>
-      <div class="col-md-4 themed-grid-col">            
-        <p id="card_num"></p>
-      </div>
-      <div class="col-md-4 themed-grid-col">card_num</div>
-    </div>
-
-    <div class="row mb-3">
-      <div class="col-md-4 themed-grid-col">
-        <label for="address">주소</label>
-      </div>
-      <div class="col-md-4 themed-grid-col">            
-        <p id="address"></p>
-      </div>
-      <div class="col-md-4 themed-grid-col">address</div>
-    </div>
-
-    <div class="row mb-3">
-      <div class="col-md-4 themed-grid-col">
-        <label for="telecom_num">휴대폰 번호</label>
-      </div>
-      <div class="col-md-4 themed-grid-col">            
-        <p id="telecom_num"></p>
-      </div>
-      <div class="col-md-4 themed-grid-col">telecom_num</div>
-    </div>
-
-    <div class="row mb-3">
-      <div class="col-md-4 themed-grid-col">
-        <label for="car_number">차량 번호</label>
-      </div>
-      <div class="col-md-4 themed-grid-col">            
-        <p id="car_number"></p>
-      </div>
-      <div class="col-md-4 themed-grid-col">car_number</div>
-    </div>
-
 </div>
-</main>
-  </body>
+
+<div>
+    <div class="div_p">
+        <p class="font_s">휴대폰 번호</p>
+    </div>
+    <div class="div_i">
+        <input type="text" name="telecom_num" value="010-1234-1234">
+    </div>
+    <div class="div_p">
+        <p class="font_s">telecom_num</p>
+    </div>
+</div>
+
+<div>
+    <div class="div_p">
+        <p class="font_s">차량 번호</p>
+    </div>
+    <div class="div_i">
+        <input type="text" name="car_number" value="09가 1234">
+    </div>
+    <div class="div_p">
+        <p class="font_s">car_number</p>
+    </div>
+</div>
+
+</form> 
+<div class="div_p_b">
+<button type="button" style="min-width: 102px; position: relative; left: 3.5%; top : 20%; width : 70%; height: 41px; background-color: red; border: 0;" onclick="change();">
+    <p style=" margin : 0 ;color: #fff; font-size: 20px;  font-family: NanumSquareB;">
+        가명 처리
+    </p>
+</button>
+</div>
+</div>
+
+<div class="container">
+        
+    <div>
+    <div class="div_h">
+        <p class="font_i"><b>항목</b></p>
+            </div>
+        <div class="div_h">
+            <p class="font_i"><b>결과</b></p>
+        </div>
+        <div class="div_h">
+            <p class="font_i"><b>항목명</b></p>
+        </div>
+    </div>
+        
+    <div>
+        <div class="div_p">
+           <p class="font_s">계좌명</p>
+        </div>
+        <div class="div_p">
+            <strong><p class="font_s" id="account_name"></p></strong>
+        </div>
+        <div class="div_p"">
+                <p class="font_s">account_name</p>
+        </div>
+    </div><source>
+
+    <div>
+        <div class="div_p">
+            <p class="font_s">계좌 번호</p>
+        </div>
+        <div class="div_p">
+            <strong><p class="font_s" id="account_num"></p></strong>
+        </div>
+        <div class="div_p">
+            <p class="font_s">account_num</p>
+        </div>
+    </div>
+
+    <div>
+        <div class="div_p">
+            <p class="font_s">거래 메모</p>
+        </div>
+        <div class="div_p">
+            <strong><p class="font_s" id="trans_memo"></p></strong>
+        </div>
+        <div class="div_p">
+            <p class="font_s">trans_memo</p>
+        </div>  
+    </div>
+
+    <div>
+        <div class="div_p">
+            <p class="font_s">카드 번호</p>
+        </div>
+        <div class="div_p">
+            <strong><p class="font_s" id="card_num"></p></strong>
+        </div>
+        <div class="div_p">
+            <p class="font_s">card_num</p>
+        </div>
+    </div>
+
+    <div>
+        <div class="div_p">
+            <p class="font_s">주소</p>
+        </div>
+        <div class="div_p">
+            <strong><p class="font_s" id="address"></p></strong>
+        </div>
+        <div class="div_p">
+            <p class="font_s">address</p>
+        </div>
+    </div>
+
+    <div>
+        <div class="div_p">
+            <p class="font_s">휴대폰 번호</p>
+        </div>
+        <div class="div_p">
+            <strong><p class="font_s" id="telecom_num"></p></strong>
+        </div>
+        <div class="div_p">
+            <p class="font_s">telecom_num</p>
+        </div>
+    </div>
+
+    <div>
+        <div class="div_p">
+            <p class="font_s">차량 번호</p>
+        </div>
+        <div class="div_p">
+            <strong><p class="font_s" id="car_number"></p></strong>
+        </div>
+        <div class="div_p">
+            <p class="font_s">car_number</p>
+        </div>
+    </div>  
+</div>
+<br>
+
+    
+</body>
 </html>

@@ -3,7 +3,9 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.shortcuts import render
 import re
-    
+import hashlib
+import uuid
+
 class pseudonymy :
 
     def p_data(data):
@@ -78,6 +80,32 @@ class pseudonymy :
         else :
             return ''
 
+class h_encryption :
+    
+    def __init__():
+        return ''
+    
+    # 비 가역적인 가명처리 방법 sha256 이름과 계좌, 전화번호를 섞어서 만듬. sha256
+    def comb_data(name, num):
+        
+        # 동적 salt 생성
+        salt = uuid.uuid4().hex
+        
+        comb_data = name + '/' + num
+        comb_h = hashlib.sha256(salt.encode() + comb_data.encode()).hexdigest()
+        print(comb_data + ' -> SHA256 Convert ' + 'secret: ')
+        print(comb_h)
+        return comb_h
+    
+            
+    def hashText(text):
+
+        salt = uuid.uuid4().hex
+        return hashlib.sha256(salt.encode() + text.encode()).hexdigest()
+        #+ ':' + salt
+        
+    # 가역적인 가명처리 방법 보안적으로 취약하며 키 관리 및 보안 유지가 필요함 
+
 target_data = {
                 'client_id' : pseudonymy.p_data,
                 'client_secret' : pseudonymy.p_data,
@@ -111,17 +139,50 @@ def anonymization(processed, target_data, temp_dict):
                 temp_dict[key_r] = value_p(value_r)
     return temp_dict
 
+def anonymization2(processed, target_data, temp_dict):
+    
+    # request.data
+    if ('account_name' in processed.keys() and  'account_num' in processed.keys()):
+        temp_dict['id'] = h_encryption.comb_data(processed['account_name'], processed['account_num'])
+        del processed['account_name']
+        del processed['account_num']
+        
+    if ('telecom_num' in processed.keys()):
+        from faker import Faker
+        
+        faker = Faker('ko_KR')
+        temp_dict['telecom_num'] = faker.phone_number()
+        del processed['telecom_num']
+    for key_r, value_r in processed.items():
+        
+        for key_p, value_p in target_data.items():                
+            if key_r == key_p:
+                print(processed[key_r] +' -> ' + value_p(value_r))
+                temp_dict[key_r] = value_p(value_r)
+    return temp_dict
+
 def Demo(request):
     return render(request,'Demo.html',{})
 
 def old(request):
     return render(request,'old.html',{})
 
+def old2(request):
+    return render(request,'old2.html',{})
+
 
 @api_view(["POST"])
-def MydatashieldAPI(request):
+def MydatashieldMasking(request):
 
     response_data = dict()
     anonymization(request.data, target_data, response_data)
+   
+    return Response(response_data)
+
+@api_view(["POST"])
+def MydatashieldEncryption(request):
+
+    response_data = dict()
+    anonymization2(request.data, target_data, response_data)
    
     return Response(response_data)
