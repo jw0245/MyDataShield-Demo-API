@@ -20,6 +20,6 @@ urlpatterns = [
     path("old/",views.old,name='old' ),
     path("old2/",views.old2,name='old2'),
     path("mydatashield/", views.MydatashieldMasking),
-    path("mydatashield2/", views.MydatashieldEncryption)
+    path("mydatashield2/", views.MydatashieldEncryption),
 ]
 

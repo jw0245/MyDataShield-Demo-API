@@ -5,6 +5,7 @@ from django.shortcuts import render
 import re
 import hashlib
 import uuid
+from faker import Faker
 
 class pseudonymy :
 
@@ -148,11 +149,12 @@ def anonymization2(processed, target_data, temp_dict):
         del processed['account_num']
         
     if ('telecom_num' in processed.keys()):
-        from faker import Faker
+        
         
         faker = Faker('ko_KR')
         temp_dict['telecom_num'] = faker.phone_number()
         del processed['telecom_num']
+
     for key_r, value_r in processed.items():
         
         for key_p, value_p in target_data.items():                
@@ -177,7 +179,6 @@ def MydatashieldMasking(request):
 
     response_data = dict()
     anonymization(request.data, target_data, response_data)
-   
     return Response(response_data)
 
 @api_view(["POST"])
@@ -185,5 +186,4 @@ def MydatashieldEncryption(request):
 
     response_data = dict()
     anonymization2(request.data, target_data, response_data)
-   
     return Response(response_data)
