@@ -143,14 +143,13 @@ def anonymization(processed, target_data, temp_dict):
 def anonymization1(processed, target_data, temp_dict):
     
     # request.data
-    if ('account_name' in processed.keys() and 'account_num' in processed.keys()):
+    if ('account_name' in processed.keys()) and ('account_num' in processed.keys()):
+
         temp_dict['id'] = h_encryption.comb_data(processed['account_name'], processed['account_num'])
         del processed['account_name']
         del processed['account_num']
         
-    if ('telecom_num' in processed.keys()):
-        
-        
+    if 'telecom_num' in processed.keys():
         faker = Faker('ko_KR')
         temp_dict['telecom_num'] = faker.phone_number()
         del processed['telecom_num']
@@ -178,9 +177,12 @@ def old2(request):
 def Mydatashield(request):
 
     response_data = dict()
-    if request.data['Response_type'] == '0':
+    print('get_post')
+    if str(request.data['Response_type']) == '0':
+        print('type = 0')
         anonymization(request.data, target_data, response_data)
-    elif request.data['Response_type'] == '1':
+    elif str(request.data['Response_type']) == '1':
+        print('type = 1')
         anonymization1(request.data, target_data, response_data)
     return Response(response_data)
 
