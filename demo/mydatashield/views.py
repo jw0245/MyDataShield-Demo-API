@@ -175,13 +175,13 @@ def old2(request):
 
 
 @api_view(["POST"])
-def MydatashieldMasking(request):
+def Mydatashield(request):
 
     response_data = dict()
-    anonymization(request.data, target_data, response_data)
+    if request.data['Response_type'] == '0':
+        anonymization(request.data, target_data, response_data)
+    elif request.data['Response_type'] == '1':
+        anonymization1(request.data, target_data, response_data)
     return Response(response_data)
-def MydatashieldEncryption(request):
 
-    response_data = dict()
-    anonymization1(request.data, target_data, response_data)
-    return Response(response_data)
+   

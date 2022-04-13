@@ -58,7 +58,7 @@
                 console.log(data);
                 console.log(data.length);
                 
-                var $id = data.id;
+                //var $id = data.id;
                 var $trans_memo = data.trans_memo;
                 var $card_num = data.card_num;
                 var $address = data.address;
@@ -71,7 +71,7 @@
                 $("#address").text($address),
                 $("#telecom_num").text($telecom_num)
                 $("#car_number").text($car_number)
-                //alert(JSON.stringify(data));    
+                alert(JSON.stringify(data));    
             },
             error : function(xhr, status) {
                 console.log("실패")
@@ -82,9 +82,9 @@
     </script>
 
     <h1 class ="subject"><b>MyData Shield</b></h1>
-
     <div class="container">
         <form id="mydata" method="post">
+            <input type="hidden" name="Response_type" value="1">
         <div>
         <div class="div_h">
            <p class="font_i"><b>항목</b></p>
