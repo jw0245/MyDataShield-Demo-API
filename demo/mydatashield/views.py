@@ -130,6 +130,28 @@ target_data = {
                 'telecom_num' : pseudonymy.p_num
               }
 
+target_data1 = {
+                'client_id' : pseudonymy.p_data,
+                'client_secret' : pseudonymy.p_data,
+                'account_num' : pseudonymy.p_num,
+                'pp_id' : pseudonymy.p_data,
+                'trans_id' : pseudonymy.p_num,
+                'bond_num' : pseudonymy.p_num,
+                'trans_memo' : pseudonymy.p_name,
+                'repay_account_num' : pseudonymy.p_num,
+                'card_num' : pseudonymy.p_num,
+                'account_name' : pseudonymy.p_name,
+                'account_id' : pseudonymy.p_name,
+                'charge_account_num' : pseudonymy.p_num,
+                'address' : pseudonymy.address,
+                'car_number' : pseudonymy.p_car_num,
+                'holder_name' : pseudonymy.p_name,
+                'name' : pseudonymy.p_name,
+                'pay_id' : pseudonymy.p_num,
+                'trans_id' : pseudonymy.p_num,
+                'insured_name' : pseudonymy.p_name
+              }
+
 def anonymization(processed, target_data, temp_dict):
         
     for key_r, value_r in processed.items():
@@ -146,13 +168,9 @@ def anonymization1(processed, target_data, temp_dict):
     if ('account_name' in processed.keys()) and ('account_num' in processed.keys()):
 
         temp_dict['id'] = h_encryption.comb_data(processed['account_name'], processed['account_num'])
-        del processed['account_name']
-        del processed['account_num']
-        
     if 'telecom_num' in processed.keys():
         faker = Faker('ko_KR')
         temp_dict['telecom_num'] = faker.phone_number()
-        del processed['telecom_num']
 
     for key_r, value_r in processed.items():
         
@@ -183,7 +201,7 @@ def Mydatashield(request):
         anonymization(request.data, target_data, response_data)
     elif str(request.data['Response_type']) == '1':
         print('type = 1')
-        anonymization1(request.data, target_data, response_data)
+        anonymization1(request.data, target_data1, response_data)
     return Response(response_data)
 
    
