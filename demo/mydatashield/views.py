@@ -167,7 +167,7 @@ def anonymization1(processed, target_data, temp_dict):
     # request.data
     if ('account_name' in processed.keys()) and ('account_num' in processed.keys()):
 
-        temp_dict['id'] = h_encryption.comb_data(processed['account_name'], processed['account_num'])
+        temp_dict['s_id'] = h_encryption.comb_data(processed['account_name'], processed['account_num'])
     if 'telecom_num' in processed.keys():
         faker = Faker('ko_KR')
         temp_dict['telecom_num'] = faker.phone_number()

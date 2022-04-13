@@ -59,17 +59,17 @@
                 console.log(data.length);
                 
                 //var $id = data.id;
-                var $id = data.$id;
+                var $s_id = data.$s_id;
                 var $trans_memo = data.trans_memo;
                 var $card_num = data.card_num;
                 var $address = data.address;
                 var $telecom_num = data.telecom_num;
                 var $car_number = data.car_number;
     
-                $("#id").text($id),
-                $("#trans_memo").text($trans_memo),
-                $("#card_num").text($card_num),
-                $("#address").text($address),
+                $("#s_id").text($s_id)
+                $("#trans_memo").text($trans_memo)
+                $("#card_num").text($card_num)
+                $("#address").text($address)
                 $("#telecom_num").text($telecom_num)
                 $("#car_number").text($car_number)
                 alert(JSON.stringify(data));    
@@ -212,10 +212,10 @@
            <p class="font_s">ID(계좌명+계좌 번호 암호화)</p>
         </div>
         <div class="div_p">
-            <strong><p class="font_s" id="id"></p></strong>
+            <strong><p class="font_s" id="s_id"></p></strong>
         </div>
         <div class="div_p"">
-            <p class="font_s">id</p>
+            <p class="font_s">s_id</p>
         </div>
     </div>
 
