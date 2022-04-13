@@ -161,6 +161,7 @@ def anonymization2(processed, target_data, temp_dict):
                 temp_dict[key_r] = value_p(value_r)
     return temp_dict
 
+
 def Demo(request):
     return render(request,'Demo.html',{})
 
