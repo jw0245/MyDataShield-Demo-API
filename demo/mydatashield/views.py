@@ -192,7 +192,7 @@ def Mydatashield(request):
 
             if key == 'telecom_num' :
 
-                response_data[key] = fake.phon_number()
+                response_data[key] = fake.phone_number()
 
             if key =='car_number' :
 
