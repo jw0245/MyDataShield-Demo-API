@@ -62,11 +62,13 @@ class pseudonymy :
             ac_s = num.split('-')
             result = ac_s[0] + '-' + len(ac_s[1])*'*' + '-' + ac_s[2] + '-' + len(ac_s[3])*'*'   
             return payment_re.sub('\g<1>-****-\g<3>-****',num)
+
         # account_num
         elif account_re.match(num):
             ac_s = num.split('-')
             result = ac_s[0] + '-' + len(ac_s[1])*'*' + '-' + len(ac_s[2])*'*'  
             return result
+
         # other payment methods
         else :
             a = list(num)
@@ -170,11 +172,12 @@ def Mydatashield(request):
             if key == 'account_num' : 
 
                 num = fake.credit_card_number()
-                account_re = re.compile(r'(\d{2,3})(\d{2,4})(\d{2,5})(\d{2,6})$')
-                account_num = account_re.sub('\g<1>-\g<2>-\g<3>-\g<4>', num)
-                print(v +' -> ')
-                print(account_num)
-                response_data[key] = account_num
+                account_re = re.compile(r'(\d{2,4})(\d{2,5})(\d{2,5})(\d{4,9})$')
+                faker_num = account_re.sub('\g<1>-\g<2>-\g<3>', num)
+                raw_account_0 = v.split('-')[0]
+                print(v +' -> ', end='')
+                print(raw_account_0 + '-' + faker_num,)
+                response_data[key] = raw_account_0 + '-' + faker_num
 
             if key == 'trans_memo' :  
                 response_data[key] = fake.text(max_nb_chars=20)
@@ -183,20 +186,29 @@ def Mydatashield(request):
 
                 num = fake.credit_card_number()
                 card_re = re.compile(r'(\d{4})(\d{4})(\d{4})(\d{1,4})$')
-                card_num = card_re.sub('\g<1>-\g<2>-\g<3>-\g<4>', num)
-                response_data[key] = card_num
+                faker_num = card_re.sub('\g<1>-\g<2>-\g<3>', num)
+                raw_card_0 = v.split('-')[0]
+                print(v + ' -> ', end='')
+                print(raw_card_0 + '-' + faker_num)
+                response_data[key] = raw_card_0 + '-' + faker_num
             
             if key == 'address' : 
+
+                address_s = v.split(' ')
+                faker_address = fake.address().split(' ')
+                address = address_s[0] + ' ' +  address_s[1] + ' ' + faker_address[-1]
+                print (address)
                 
-                response_data[key] = fake.address()
+                response_data[key] = address
 
             if key == 'telecom_num' :
 
                 response_data[key] = fake.phone_number()
 
             if key =='car_number' :
+                car_num = v.split(' ')[0]
 
-                response_data[key] = fake.license_plate()
+                response_data[key] = car_num + '-' + str(fake.random_number(fix_len=True, digits=4))
 
     return Response(response_data)
 
