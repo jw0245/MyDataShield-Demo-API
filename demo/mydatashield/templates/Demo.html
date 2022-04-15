@@ -20,7 +20,9 @@
         .font_i {position: relative; width:  100%; text-align: center; font-size: 18px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
         .font_s { padding-top: 5px; text-overflow: clip; word-wrap: break-word; line-height: 95%; width:  99%; text-align: center; color : #333; font-size: 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
         .font_r { padding-top: 5px; text-overflow: clip; word-wrap: break-word; line-height: 95%; width:  99%; text-align: center; color : #333; font-size: 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
- 
+        .font_b { padding-top: 30px; text-overflow: clip; word-wrap: break-word; line-height: 95%; width:  99%; text-align: center; color : #333; font-size: 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
+
+        #ac_num{ padding-top: 5px; text-overflow: clip; word-wrap: break-word; line-height: 95%; width:  99%; text-align: center; color : #333; font-size: 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
         input {color : #333; width: 100%; height: 25px; z-index: 0; background-color:  rgb(233, 233, 233); }
         
          @media (max-width: 805px){
@@ -117,7 +119,6 @@
             formData = changeSerialize(formData, 'Response_type', '2')
             console.log(formData)
             $('.font_r').css("font-size", "16px")
-
             change(formData)
 
         }
@@ -151,22 +152,49 @@
                     var $telecom_num = data.telecom_num;
                     var $car_number = data.car_number;
 
-                    $("#account_name").text($account_name)
-                    $("#account_num").text($account_num)
-                    $("#trans_memo").text($trans_memo)
-                    $("#card_num").text($card_num)
-                    $("#address").text($address)
-                    $("#telecom_num").text($telecom_num)
-                    $("#car_number").text($car_number)
+                   
+                    
+                    let is_faker = false
+
+                    // Faker 사용시만 해당
+                    for (i = 0; i < formData.length; i++){
+
+                        if (formData[i]['name'] == 'Response_type' && formData[i]['value'] == '2'){
+                            is_faker = true 
+                        }
+                    }
+
+                    if (is_faker == false) {
+
+                            $("#account_name").text($account_name)
+                            $("#account_num").text($account_num)
+                            $("#trans_memo").text($trans_memo)
+                            $("#card_num").text($card_num)
+                            $("#address").text($address)
+                            $("#telecom_num").text($telecom_num)
+                            $("#car_number").text($car_number)
+
+                    }
+                    else {
+
+                            $("#account_name").text($account_name)
+                            $("#account_num").text($account_num)
+                            $("#ac_num").text($account_num)
+                            $("#trans_memo").text($trans_memo)
+                            $("#card_num").text($card_num)
+                            $("#address").text($address)
+                            $("#telecom_num").text($telecom_num)
+                            $("#car_number").text($car_number)
+                    }
+
+
                 },
                 error : function(xhr, status) {
                     console.log("실패")
                     alert(xhr + " : " + status);
                 }
             });
-
         }
-
     </script>
 
     <h1 class ="subject"><b>MyData Shield</b></h1>
@@ -319,7 +347,7 @@
         <div class="div_p">
             <strong><p class="font_r" id="account_name"></p></strong>
         </div>
-        <div class="div_p"">
+        <div class="div_p">
                 <p class="font_s">account_name</p>
         </div>
     </div>
@@ -329,7 +357,7 @@
             <p class="font_s">계좌 번호</p>
         </div>
         <div class="div_p">
-            <strong><p class="font_r" id="account_num"></p></strong>
+            <strong><p class="font_r" id="account_num" style="float: left;"></p></strong>
         </div>
         <div class="div_p">
             <p class="font_s">account_num</p>

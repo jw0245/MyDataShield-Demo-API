@@ -30,7 +30,7 @@ class pseudonymy :
             return''.join(name_l)
         else :
             return ''
-   
+            
     # Vehicle number format processing
     def p_car_num(car_num):
         if len(car_num) >= 4:

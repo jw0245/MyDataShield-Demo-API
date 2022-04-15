@@ -5,60 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
-    <style>
-    h1 {
-        height: 60px;
-        padding: 0;
-        margin: 0;
-        }
-    </style>
-         
-
 </head>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 <body>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
     <script>
 
-$(function(){
+        $(function(){
+            const regex = /\d{3}-\d{4}-\d{4}/;
 
-        function getSize() {
-            size = $( ".news_article" ).css( "font-size" );
-            size = parseInt(size, 10);
-            $( "#font-size" ).text(  size  );
-    }
 
-    //get inital font size
-    getSize();
-
-    $( "#up" ).on( "click", function() {
-        // parse font size, if less than 50 increase font size
-        if ((size + 2) <= 50) {
-            $( ".news_article" ).css( "font-size", "+=2" );
-            $( "#font-size" ).text(  size += 2 );
-        }
-    });
-
-    $( "#down" ).on( "click", function() {
-        if ((size - 2) >= 12) {
-            $( ".news_article" ).css( "font-size", "-=2" );
-            $( "#font-size" ).text(  size -= 2  );
-        }
-    });
-});
-
+            let str = '123-456-789-123'
+            let str1 = str.split('-')
+            let a = str.replace(str1[0], "")
+            $('.target').text(str1[0])
+            $('.target1').append(a)
+        });
 
     </script>
+
+    <span class="target" style="float: left; color : blue;"></span><span class="target1" style="float: left;"></span>
     
-
-    <div class=”container”>
-        <h1>Resize Me</h1>
-        <p class=”font-size-label”>Font Size</p>
-        <button id=”up”>+</button>
-        <p id=”font-size”></p>
-        <button id=”down”>-</button>
-    </div>
-
-
 </body>
 </html>
