@@ -158,7 +158,7 @@ def Mydatashield(request):
         
         print('type = 2')
         fake = Faker('ko-KR')
-        Faker.seed(0)
+        #Faker.seed(0)
 
         target_temp = target_data
         req = request.data
