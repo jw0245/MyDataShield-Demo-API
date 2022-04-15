@@ -198,7 +198,7 @@ def Mydatashield(request):
                 faker_address = fake.address().split(' ')
                 address = address_s[0] + ' ' +  address_s[1] + ' ' + faker_address[-1]
                 print (address)
-                
+
                 response_data[key] = address
 
             if key == 'telecom_num' :
@@ -208,7 +208,7 @@ def Mydatashield(request):
             if key =='car_number' :
                 car_num = v.split(' ')[0]
 
-                response_data[key] = car_num + '-' + str(fake.random_number(fix_len=True, digits=4))
+                response_data[key] = car_num + ' ' + str(fake.random_number(fix_len=True, digits=4))
 
     return Response(response_data)
 
