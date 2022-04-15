@@ -162,7 +162,7 @@ def Mydatashield(request):
 
         target_temp = target_data
         req = request.data
-        for k, v in req.items():
+        for key, v in req.items():
 
             if key == 'account_name' : 
                 response_data[key] = fake.name()
