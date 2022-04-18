@@ -160,44 +160,46 @@ def Mydatashield(request):
         
         print('type = 2')
         fake = Faker('ko-KR')
-        seed = ''
-        for v in request.data['account_num'].split('-'):
-            seed = seed + v
-
-        Faker.seed(int(seed))
 
         target_temp = target_data
         req = request.data
         for key, v in req.items():
             
             if key == 'account_name' : 
+                Faker.see(v)
                 response_data[key] = fake.name()
+
             
             if key == 'account_num' : 
-
+                Faker.see(v)
                 num = fake.credit_card_number()
                 account_re = re.compile(r'(\d{2,4})(\d{2,5})(\d{2,5})(\d{4,9})$')
                 faker_num = account_re.sub('\g<1>-\g<2>', num)
                 raw_account_0 = v.split('-')[0]
+
                 print(v +' -> ', end='')
                 print(raw_account_0 + '-' + faker_num + '-' + v.split('-')[-1] )
+
                 response_data[key] = raw_account_0 + '-' + faker_num
 
             if key == 'trans_memo' :  
+                Faker.see(v)
                 response_data[key] = fake.text(max_nb_chars=20)
             
             if key == 'card_num' : 
-
+                Faker.see(v)
                 num = fake.credit_card_number()
                 card_re = re.compile(r'(\d{4})(\d{4})(\d{4})(\d{1,4})$')
                 faker_num = card_re.sub('\g<1>-\g<2>-\g<3>', num)
                 raw_card_0 = v.split('-')[0]
+
                 print(v + ' -> ', end='')
                 print(raw_card_0 + '-' + faker_num)
+                
                 response_data[key] = raw_card_0 + '-' + faker_num
             
             if key == 'address' : 
-
+                Faker.see(v)
                 address_s = v.split(' ')
                 faker_address = fake.address().split(' ')
                 address = address_s[0] + ' ' +  address_s[1] + ' ' + faker_address[-1]
@@ -206,12 +208,12 @@ def Mydatashield(request):
                 response_data[key] = address
 
             if key == 'telecom_num' :
-
+                Faker.see(v)
                 response_data[key] = fake.phone_number()
 
             if key =='car_number' :
+                Faker.see(v)
                 car_num = v.split(' ')[0]
-
                 response_data[key] = car_num + ' ' + str(fake.random_number(fix_len=True, digits=4))
 
     return Response(response_data)
