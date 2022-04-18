@@ -160,12 +160,15 @@ def Mydatashield(request):
         
         print('type = 2')
         fake = Faker('ko-KR')
-        #Faker.seed(0)
+        seed = ''
+        for v in request.data['account_num'].split('-'):
+            seed = seed + v
 
+        Faker.seed(int(seed))
         target_temp = target_data
         req = request.data
         for key, v in req.items():
-
+            
             if key == 'account_name' : 
                 response_data[key] = fake.name()
             
