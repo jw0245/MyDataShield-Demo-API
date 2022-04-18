@@ -165,6 +165,7 @@ def Mydatashield(request):
             seed = seed + v
 
         Faker.seed(int(seed))
+
         target_temp = target_data
         req = request.data
         for key, v in req.items():
@@ -176,10 +177,10 @@ def Mydatashield(request):
 
                 num = fake.credit_card_number()
                 account_re = re.compile(r'(\d{2,4})(\d{2,5})(\d{2,5})(\d{4,9})$')
-                faker_num = account_re.sub('\g<1>-\g<2>-\g<3>', num)
+                faker_num = account_re.sub('\g<1>-\g<2>', num)
                 raw_account_0 = v.split('-')[0]
                 print(v +' -> ', end='')
-                print(raw_account_0 + '-' + faker_num,)
+                print(raw_account_0 + '-' + faker_num + '-' + v.split('-')[-1] )
                 response_data[key] = raw_account_0 + '-' + faker_num
 
             if key == 'trans_memo' :  
