@@ -20,7 +20,7 @@ MyData Shield API는 마이데이터 서비스에 포함되어 있는 정보 주
 * 마스킹을 통한 가명처리 방식
 * 동적 Salt를 활용한 단방향 SHA256 암호화 방식 가명처리
 * Faker 라이브러리를 사용한 가명처리
-* Response 항목명 값에 따른 마스킹, 암호화, Faker 기능 제공('0' = Masking, '1' = 암호화, '2' = Faker)
+* Response_type 항목명 값에 따른 마스킹, 암호화, Faker 기능 제공('0' = Masking, '1' = 암호화, '2' = Faker)
 * 
 ### 화면
 ![image](https://user-images.githubusercontent.com/61214962/163522671-3212b02e-b9f0-49d1-ad7e-d0616538bcc4.png)
