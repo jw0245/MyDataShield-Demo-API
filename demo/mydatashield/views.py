@@ -217,5 +217,3 @@ def Mydatashield(request):
                 response_data[key] = car_num + ' ' + str(fake.random_number(fix_len=True, digits=4))
 
     return Response(response_data)
-
-   

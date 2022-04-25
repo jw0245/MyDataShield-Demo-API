@@ -87,40 +87,48 @@
     <script type="text/javascript">
         //Response_type의 value의 따라서 호출하는 API를 다르게 설정
         function Masking(){
-
+            texthide()
+            $('.font_r').css("font-size", "16px")
             var formData = $("#mydata").serializeArray();
             
             formData = changeSerialize(formData, 'Response_type', '0')
             console.log(formData)
-            $('.font_r').css("font-size", "16px")
 
             change(formData)
 
 
         }
-
         function encryption(){
-
+            texthide()
+            $('.font_r').css("font-size", "13px")
             var formData = $("#mydata").serializeArray();
             
             formData = changeSerialize(formData, 'Response_type', '1')
             console.log(formData)
             $(function(){
-            $('.font_r').css("font-size", "13px")
             });
             change(formData)
 
         }
-
         function faker(){
-            
+            texthide()
+            $('.font_r').css("font-size", "16px")
             var formData = $("#mydata").serializeArray();
             
             formData = changeSerialize(formData, 'Response_type', '2')
             console.log(formData)
-            $('.font_r').css("font-size", "16px")
             change(formData)
 
+        }
+        function texthide(){
+            $("#account_name").text('')
+            $("#account_num").text('')
+            $("#ac_num").text('')
+            $("#trans_memo").text('')
+            $("#card_num").text('')
+            $("#address").text('')
+            $("#telecom_num").text('')
+            $("#car_number").text('')
         }
 
     </script>
