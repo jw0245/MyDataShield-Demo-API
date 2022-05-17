@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -140,5 +141,6 @@ CORS_ORIGIN_ALLOW_ALL = True
     #'https://localhost:8080',
     #'https://google.com',
     #'https://hostname.example.com']
+
 CORS_ALLOW_CREDENTIALS = True
 
