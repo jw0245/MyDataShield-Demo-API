@@ -126,6 +126,7 @@ def anonymization(processed, target_data, temp_dict):
 def Demo(request):
     return render(request,'Demo.html',{})
 
+
 @api_view(["POST"])
 def shieldapi(request):
 
@@ -209,3 +210,4 @@ def shieldapi(request):
                 car_num = v.split(' ')[0]
                 response_data[key] = car_num + ' ' + str(fake.random_number(fix_len=True, digits=4))
     return Response(response_data)
+    
