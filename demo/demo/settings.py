@@ -58,7 +58,7 @@ ROOT_URLCONF = 'demo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ BASE_DIR / 'shieldapi' ],
+        'DIRS': [ ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,7 +130,9 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS 관련 추가 
+
 CORS_ORIGIN_ALLOW_ALL = True
+
 #CORS_ORIGIN_WHITELIST = [
     #'http://127.0.0.1:8080',
     #'http://localhost:8080',
