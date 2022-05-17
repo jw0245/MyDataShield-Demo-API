@@ -126,13 +126,6 @@ def anonymization(processed, target_data, temp_dict):
 def Demo(request):
     return render(request,'Demo.html',{})
 
-def old(request):
-    return render(request,'old.html',{})
-
-def old2(request):
-    return render(request,'old2.html',{})
-
-
 @api_view(["POST"])
 def shieldapi(request):
 

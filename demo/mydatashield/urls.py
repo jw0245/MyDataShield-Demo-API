@@ -17,8 +17,6 @@ from django.urls import path, include
 from . import views
 urlpatterns = [ 
     path("",views.Demo,name='Demo'),
-    path("old/",views.old,name='old' ),
-    path("old2/",views.old2,name='old2'),
     path("shieldapi/", views.shieldapi),
 ]
 
