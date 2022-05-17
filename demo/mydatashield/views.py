@@ -134,7 +134,7 @@ def old2(request):
 
 
 @api_view(["POST"])
-def Mydatashield(request):
+def shieldapi(request):
 
     response_data = dict()
     print('POST')
