@@ -6,6 +6,8 @@ import re
 import hashlib
 import uuid
 from faker import Faker
+import random
+fake = Faker('ko-KR')
 
 class pseudonymy :
 
@@ -90,7 +92,126 @@ class pseudonymy :
         
     # 가역적인 가명처리 방법 보안적으로 취약하며 키 관리 및 보안 유지가 필요함 
 
+class faker:
+    
+    def __init__():
+        return ''
+
+    # name form
+    def fake_name(data):
+        Faker.seed(data)
+        trans_data = fake.name()
+        print('fake_name : ' + trans_data)
+        return trans_data
+    
+    # character_faker shows 19 corresponding random characters in seed
+    def fake_character(data):
+        Faker.seed(data)
+        trans_data = fake.lexify('???????????????????')
+        print(trans_data)
+        return trans_data
+    
+    # num_faker shows 10 random digits
+    def fake_num(data):
+        Faker.seed(data)
+        trans_data = fake.bothify(text='##########')
+        print(trans_data)
+        return trans_data
+    
+    # id(Fake data with 21 digits and letters)
+    def fake_id(data):
+        Faker.seed(data)
+        trans_data = fake.lexify(text='?????????????????????', letters='ABCDEFGHIZKLMNOPQRSTUWYZabcdefghijklmnopqrstuwyz0123456789')
+        print(trans_data)
+        return trans_data
+        
+    # account_num
+    def account_num(data) :
+        Faker.seed(data)
+        trans_data = fake.credit_card_number()
+        print(trans_data)
+        return trans_data
+    
+    # 20-50 random character generation
+    def client_id(data) :
+        Faker.seed(data)
+        trans_data = fake.pystr( min_chars= 20 , max_chars = 50)
+        print(trans_data)
+        return trans_data
+    
+    # Generate encryption key corresponding to md5 type seed
+    def client_secret(data) :
+        Faker.seed(data)
+        trans_data = fake.md5()
+        print(trans_data)
+        return trans_data
+    
+    # domain
+    def domain(data) : 
+        Faker.seed(data)
+        random.seed(data)
+        domain_dot = random.randint(1,5)
+        trans_data = 'https://' + fake.domain_name(domain_dot)
+        print(trans_data)
+        return 'https://' + fake.domain_name(domain_dot)
+    
+    # ci 
+    def fake_num8(data) : 
+        Faker.seed(data)
+        trans_data = fake.ean(length =8)
+        print(trans_data)
+        return trans_data
+    
+    # corp_regno
+    def fake_num13(data) : 
+        Faker.seed(data)
+        trans_data = fake.ean(length = 13)
+        print(trans_data)
+        return trans_data
+    
+    # 000-00-0000 type regono
+    def fake_regno(data) : 
+        Faker.seed(data)
+        trans_data = fake.bothify(text='###-##-####')
+        print(trans_data)
+        return trans_data
+    
+
+    def fake_ip(data):
+
+        Faker.seed(data)
+        trans_data = fake.ipv4_public()
+        print(trans_data)
+        return trans_data
+
+    # redirect_uri
+    def redirect_uri(data):
+
+        Faker.seed(data)
+        trans_data = fake.url()
+        print(trans_data)
+        return fake.url()
+
+    # coverage_num
+    def coverage_num(data):
+
+        Faker.seed(data)
+        trans_data = fake.bothify(text='##############')
+        print(trans_data)
+        return trans_data
+    
+    # sha256 암호화 코드 
+    def sha256(data):
+
+        Faker.seed(data)
+        trans_data = fake.sha256()
+        print(trans_data)
+        return trans_data
+  
+
+
 target_data = {
+
                 'client_id' : pseudonymy.p_data,
                 'client_secret' : pseudonymy.p_data,
                 'account_num' : pseudonymy.p_num,
@@ -105,13 +226,13 @@ target_data = {
                 'charge_account_num' : pseudonymy.p_num,
                 'address' : pseudonymy.address,
                 'car_number' : pseudonymy.p_car_num,
-                'holder_name' : pseudonymy.p_name,
                 'name' : pseudonymy.p_name,
                 'pay_id' : pseudonymy.p_num,
                 'trans_id' : pseudonymy.p_num,
                 'insured_name' : pseudonymy.p_name,
                 'telecom_num' : pseudonymy.p_num
               }
+
 
 def anonymization(processed, target_data, temp_dict):
 
@@ -121,6 +242,7 @@ def anonymization(processed, target_data, temp_dict):
             if key_r == key_p:
                 print(processed[key_r] +' -> ' + value_p(value_r))
                 temp_dict[key_r] = value_p(value_r)
+
     return temp_dict
 
 def Demo(request):
@@ -153,7 +275,6 @@ def shieldapi(request):
     elif str(request.data['Response_type']) == '2':
         
         print('type = 2')
-        fake = Faker('ko-KR')
 
         target_temp = target_data
         req = request.data
@@ -163,7 +284,6 @@ def shieldapi(request):
                 Faker.seed(v)
                 response_data[key] = fake.name()
 
-            
             if key == 'account_num' : 
                 Faker.seed(v)
                 num = fake.credit_card_number()
@@ -209,5 +329,6 @@ def shieldapi(request):
                 Faker.seed(v)
                 car_num = v.split(' ')[0]
                 response_data[key] = car_num + ' ' + str(fake.random_number(fix_len=True, digits=4))
+
     return Response(response_data)
     

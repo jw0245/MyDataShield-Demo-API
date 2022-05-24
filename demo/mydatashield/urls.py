@@ -18,5 +18,6 @@ from . import views
 urlpatterns = [ 
     path("",views.Demo, name='Demo'),
     path("shieldapi/", views.shieldapi),
+    path("shieldapi", views.shieldapi),
 ]
 
